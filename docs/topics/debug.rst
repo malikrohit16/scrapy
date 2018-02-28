@@ -11,16 +11,16 @@ Consider the following scrapy spider below::
     from myproject.items import MyItem
 
     class MySpider(scrapy.Spider):
-        name = 'myspider'
-        start_urls = (
-            'http://example.com/page1',
-            'http://example.com/page2',
+        name = 'myspider'                
+         start_urls = (
+            'http://books.toscrape.com/page1',            #'http://example.com/page1',
+            'http://books.toscrape.com/page2',            #http://example.com/page2'
             )
 
         def parse(self, response):
-            # collect `item_urls`
-            for item_url in item_urls:
-                yield scrapy.Request(item_url, self.parse_item)
+            item_url=response.url         
+            yield scrapy.Request(item_url, self.parse_item)
+
 
         def parse_item(self, response):
             item = MyItem()
